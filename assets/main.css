@@ -8,50 +8,17 @@
     --color-text-dark: #1C2E46;
 }
 
-/* --- CRITICAL STRUCTURAL FIXES (FINAL ATTEMPT) --- */
-
-/* FIX #1: The "1" Fix - Aggressively remove all list markers */
-#nav-overlay-container, #nav-overlay-container * {
-    list-style: none !important;
-    list-style-type: none !important;
-}
-
-/* FIX #2: FOUC Fix - Hide placeholder *content* until script runs */
-/* We set a very low minimum height on the placeholders so they don't take up space */
-#nav-overlay-container, #footer-container {
-    min-height: 1px; 
-    overflow: hidden; 
-}
-/* When content is injected, it will override this height with its actual size. */
-/* If the issue persists, the JS must be setting the initial visibility. */
-
-
-/* --- CRITICAL GLOBAL RESET AND BOUNDARY FIX --- */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%; 
-    overflow-x: hidden;
-}
-
 * {
     box-sizing: border-box;
-    margin: 0; 
+    margin: 0;
     padding: 0;
 }
-
 
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: var(--color-gradient-light); 
+    background-color: var(--color-gradient-light); /* Light background aesthetic */
     color: var(--color-text-dark);
-    
-    /* --- STICKY FOOTER SOLUTION --- */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 /* -------------------------------------- */
@@ -59,19 +26,19 @@ body {
 /* -------------------------------------- */
 #nav-trigger {
     position: fixed;
-    top: 20px; 
-    right: 20px; 
+    top: 20px; /* Offset from the edge */
+    right: 20px; /* Offset from the edge */
     width: 50px;
     height: 50px;
     background-color: var(--color-primary);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    display: flex; 
+    display: flex; /* Centers the bars */
     flex-direction: column;
     justify-content: space-around;
     padding: 10px;
-    z-index: 1001; 
+    z-index: 1001; /* Must be above the main content */
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
@@ -84,7 +51,7 @@ body {
 
 /* Visibility Control (Scroll) */
 #nav-trigger.is-hidden {
-    transform: translateY(-100px); 
+    transform: translateY(-100px); /* Move out of view when scrolling down */
     opacity: 0;
 }
 
@@ -98,7 +65,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(28, 46, 70, 0.98); 
+    background-color: rgba(28, 46, 70, 0.98); /* Dark Blue with slight transparency */
     color: var(--color-text-light);
     z-index: 1000;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
@@ -133,7 +100,7 @@ body {
 }
 
 .overlay-menu a:hover {
-    color: var(--color-accent); 
+    color: var(--color-accent); /* Highlight on hover */
 }
 
 /* Close Button (X) */
@@ -160,14 +127,15 @@ body {
 /* --- 3. Standardized Footer Component --- */
 /* -------------------------------------- */
 .site-footer {
-    background-color: var(--color-primary); 
+    background-color: var(--color-primary); /* Dark Blue background */
     color: var(--color-text-light);
     padding: 40px 20px;
+    margin-top: 50px; /* Separates it from main content */
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr; 
+    grid-template-columns: repeat(4, 1fr); /* Multi-column structure */
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -178,11 +146,9 @@ body {
     margin-bottom: 15px;
 }
 
-/* TARGETED FIX: Ensure paragraph margins don't push outside the footer's padding */
 .site-footer p {
     font-size: 0.9rem;
-    margin-bottom: 0; 
-    padding-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .site-footer ul {
@@ -196,20 +162,22 @@ body {
 }
 
 .site-footer a:hover {
-    color: var(--color-accent); 
+    color: var(--color-accent);
 }
+
+/* --- New Styles for Updated Footer Structure --- */
 
 .footer-logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--color-accent); 
+    color: var(--color-accent); /* Highlight the site name */
     margin-bottom: 15px;
 }
 
 .footer-links-group, .contact-btn-group {
     display: flex;
     flex-direction: column;
-    gap: 8px; 
+    gap: 8px; /* Spacing between links */
 }
 
 .social-links {
@@ -220,28 +188,23 @@ body {
 }
 
 .social-links a {
-    color: var(--color-text-light); 
+    color: var(--color-text-light); /* White icons */
     transition: color 0.3s;
 }
 
 .social-links a:hover {
-    color: var(--color-accent); 
+    color: var(--color-accent); /* Highlight on hover */
 }
 
 .footer-bottom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    
-    margin: 0; 
-    padding-top: 20px;
-    
     text-align: center;
+    padding-top: 20px;
+    margin-top: 30px;
     font-size: 0.85rem;
 }
 
+/* Ensure font size in the grid is legible */
 .footer-grid h4 {
     font-size: 1.1rem;
 }
@@ -249,233 +212,117 @@ body {
     font-size: 0.95rem;
 }
 
+/* Override existing link styling for the footer's nested groups */
 .footer-links-group a, .contact-btn-group a {
-    width: fit-content; 
+    width: fit-content; /* Makes the hover effect cleaner */
 }
 
 /* Responsiveness for Footer */
 @media (max-width: 768px) {
     .footer-grid {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr); /* Two columns on tablet */
     }
 }
 
 @media (max-width: 480px) {
     .footer-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr; /* Single column on mobile */
         text-align: center;
     }
     .footer-links-group, .contact-btn-group {
         align-items: center;
     }
+    .footer-links ul, .footer-legal ul {
+        padding-left: 0;
+    }
 }
 
 
 /* -------------------------------------- */
-/* --- 4. Main Content Styling (Previous) --- */
+/* --- 4. Main Content Styling (Example) --- */
 /* -------------------------------------- */
+/* Use this section to add specific styles for classes like .hero-title, .cta-button, etc. */
 
 #page-content {
-    flex-grow: 1; 
+    min-height: 50vh; /* Ensures content pushes the footer down */
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    overflow: hidden; 
 }
 
-
-/* -------------------------------------- */
-/* --- 5. Home Page Content (index.html) Styles --- */
-/* -------------------------------------- */
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+.hero-section {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: var(--color-secondary);
+    border-radius: 8px;
+    margin-bottom: 40px;
 }
 
-.section {
-    padding: 60px 0;
-}
-
-.section-title {
-    font-size: 2rem;
+.hero-title {
+    font-size: 2.5rem;
     color: var(--color-primary);
-    text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.section-subtitle, .intro {
-    font-size: 1.1rem;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 40px;
-    line-height: 1.5;
-    color: var(--color-text-dark);
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
 }
 
-/* --- HERO SECTION --- */
-#hero-section {
-    position: relative;
-    padding: 120px 0; 
-    text-align: center;
-    color: var(--color-primary); 
-    background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-gradient-light) 100%); 
-    min-height: 550px; 
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; 
+.cta-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2; 
-}
-
-/* DESIGN FIX: Main heading size and structure */
-#hero-section h1 {
-    font-size: 4rem; /* HUGE, PROFESSIONAL WELCOME */
-    margin-bottom: 20px;
-    line-height: 1.1;
-    font-weight: 900;
-    /* FIX FOR MISALIGNMENT ON MOBILE */
-    max-width: 100%;
-}
-
-/* Adjusted H2 size to be the second line of content */
-#hero-section h2 {
-    font-size: 1.6rem; 
-    font-weight: 300;
-    max-width: 900px;
-    margin: 0 auto;
+.cta-button:hover {
+    background-color: var(--color-accent);
     color: var(--color-primary);
 }
 
+/* --- Styles for services.html (Services Page) --- */
 
-/* --- WHY TRUST SECTION GRID --- */
-#why-trust {
-    padding-top: 40px;
-    background-color: #fff;
-}
-#why-trust .grid-container {
+.services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 40px;
+    padding: 20px 0;
 }
 
-.section-card {
-    background-color: var(--color-gradient-light); 
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(28, 46, 70, 0.1); 
-    border-top: 4px solid var(--color-accent); 
-    transition: transform 0.3s ease-out;
+.service-card {
+    background-color: var(--color-secondary); /* Light Blue/Off-White background */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
 }
-.section-card:hover {
+
+.service-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(28, 46, 70, 0.2);
 }
 
-.section-card h3 {
-    color: var(--color-primary);
+.card-title {
+    color: var(--color-primary); /* Dark Blue heading */
     margin-bottom: 10px;
 }
 
-/* --- PROCESS LIST --- */
-#process {
-    background-color: var(--color-secondary); 
+.card-description {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
 }
 
-#process-list {
-    list-style: none;
-    padding: 0;
-    max-width: 800px;
-    margin: 40px auto 0;
-}
-
-#process-list li {
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(28, 46, 70, 0.1);
-}
-
-#process-list h3 {
+.card-cta {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--color-accent); /* Light Blue Accent button */
     color: var(--color-primary);
-    margin-bottom: 5px;
-    position: relative;
-    padding-left: 30px;
-}
-
-/* Custom Step Counter Styling (Uses CSS pseudo-elements) */
-#process-list li:before {
-    content: counter(step-counter);
-    counter-increment: step-counter;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 24px; 
-    height: 24px;
-    background-color: var(--color-accent);
-    color: var(--color-primary);
-    border-radius: 50%;
-    text-align: center;
-    line-height: 24px;
+    text-decoration: none;
+    border-radius: 5px;
     font-weight: bold;
-    font-size: 0.9rem;
-}
-
-/* --- FLOATING BUBBLES ANIMATION (Speed and Style Update) --- */
-#bubble-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none; 
-}
-
-/* Create the individual bubbles using pseudo-elements */
-#bubble-container::before, 
-#bubble-container::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15); 
-    mix-blend-mode: soft-light;
-    animation: float-bubbles 10s infinite ease-in-out; 
-}
-
-#bubble-container::before {
-    width: 120px; 
-    height: 120px;
-    top: 5%;
-    left: 10%;
-    background: var(--color-accent); 
-    opacity: 0.4;
-}
-
-#bubble-container::after {
-    width: 180px; 
-    height: 180px;
-    bottom: 0;
-    right: 5%;
-    background: var(--color-primary);
-    opacity: 0.15;
-    animation-delay: 3s; 
-    animation-duration: 12s; 
-}
-
-/* The Animation Keyframes */
-@keyframes float-bubbles {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-    50% {
-        transform: translate(30px, -40px) scale(1.1); 
-    }
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
     }
