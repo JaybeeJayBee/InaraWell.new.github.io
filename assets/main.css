@@ -6,23 +6,24 @@
     --color-accent: #ADD8E6; /* Light Blue Accent */
     --color-text-light: #ffffff;
     --color-text-dark: #1C2E46;
+    
+    /* NEW: Define the fixed height for the footer */
+    --footer-height: 250px; 
 }
 
 /* --- CRITICAL GLOBAL RESET AND BOUNDARY FIX --- */
-/* This prevents horizontal overflow and ensures clean starting point */
+/* This is the most aggressive margin reset */
 html, body {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
     width: 100%;
-    height: 100%; 
-    overflow-x: hidden;
+    height: 100%; /* Important for Sticky Footer */
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    position: relative; /* Ensures alignment */
 }
 
 * {
     box-sizing: border-box;
-    /* Ensure no residual margins/padding */
-    margin: 0; 
-    padding: 0;
 }
 
 
@@ -32,11 +33,38 @@ body {
     background-color: var(--color-gradient-light); 
     color: var(--color-text-dark);
     
-    /* --- STICKY FOOTER SOLUTION: PART 1 (The Reliable Flexbox Method) --- */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ensures body takes up full screen height */
+    /* --- CLASSIC STICKY FOOTER SOLUTION --- */
+    min-height: 100%; 
+    position: relative; 
+    
+    /* This ensures content-wrap is the main column */
+    display: block; 
 }
+
+/* --- KEY STICKY FOOTER FIX: WRAPPER LOGIC --- */
+/* The wrapper contains all content EXCEPT the footer */
+#content-wrap {
+    min-height: 100vh; /* Must be full viewport height */
+    
+    /* The core of the fix: Pull the footer up into the content area */
+    margin-bottom: calc(var(--footer-height) * -1); 
+    
+    /* Resetting the Flex properties that are no longer needed */
+    display: block; 
+}
+
+/* The element that creates space for the footer at the bottom of the page */
+#footer-push {
+    height: var(--footer-height); 
+}
+
+/* The footer container must be full width and fixed height */
+#footer-container {
+    height: var(--footer-height); 
+    width: 100%;
+    /* No position: fixed; is needed as the margin takes care of placement */
+}
+
 
 /* -------------------------------------- */
 /* --- 1. Floating Overlay Icon (Trigger) --- */
@@ -144,15 +172,16 @@ body {
 /* --- 3. Standardized Footer Component --- */
 /* -------------------------------------- */
 .site-footer {
+    /* The footer content fills the fixed-height footer-container */
     background-color: var(--color-primary); 
     color: var(--color-text-light);
     padding: 40px 20px;
+    height: 100%; 
 }
 
-/* ADJUSTMENT: Footer now has 5 columns: Logo/Brand, Gallery, Legal, Quick Links, Contact */
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr; 
+    grid-template-columns: repeat(4, 1fr); 
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
@@ -163,11 +192,9 @@ body {
     margin-bottom: 15px;
 }
 
-/* TARGETED FIX: Ensure paragraph margins don't push outside the footer's padding */
 .site-footer p {
     font-size: 0.9rem;
-    margin-bottom: 0; /* Removing bottom margin on paragraphs inside footer */
-    padding-bottom: 10px; /* Using padding for spacing inside the container */
+    margin-bottom: 10px;
 }
 
 .site-footer ul {
@@ -181,38 +208,10 @@ body {
 }
 
 .site-footer a:hover {
-    color: var(--color-accent); 
+    color: var(--color-accent);
 }
 
-/* --- NEW LOGO STYLES --- */
-.footer-main-logo {
-    width: 100%; /* Full width of its column */
-    max-width: 150px; /* Keep it manageable */
-    height: auto;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.logo-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.small-logo {
-    width: 40px; /* Small and neat */
-    height: auto;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-}
-
-.small-logo:hover {
-    opacity: 1;
-}
-/* --- END NEW LOGO STYLES --- */
-
+/* --- New Styles for Updated Footer Structure --- */
 
 .footer-logo {
     font-size: 1.5rem;
@@ -249,12 +248,9 @@ body {
     align-items: center;
     
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    
-    /* TARGETED FIX: Zero out margins on the bottom bar */
-    margin: 0; 
-    padding-top: 20px;
-    
     text-align: center;
+    padding-top: 20px;
+    margin-top: 30px;
     font-size: 0.85rem;
 }
 
@@ -272,35 +268,19 @@ body {
 }
 
 /* Responsiveness for Footer */
-@media (max-width: 1024px) {
-    /* Change to 3 columns: Brand+Gallery, Legal/Quick, Contact */
-    .footer-grid {
-        grid-template-columns: 2fr repeat(3, 1fr); 
-    }
-}
-
 @media (max-width: 768px) {
-    /* Change to 2 columns: Brand/Gallery, Links */
     .footer-grid {
         grid-template-columns: repeat(2, 1fr); 
-    }
-    .footer-column:nth-child(2) { /* Logo Gallery on 768px */
-        order: 4; /* Push the gallery to the bottom-left on tablet */
     }
 }
 
 @media (max-width: 480px) {
-    /* Single column on mobile */
     .footer-grid {
         grid-template-columns: 1fr; 
         text-align: center;
     }
-    .footer-column:nth-child(2) {
-        order: unset; /* Reset order */
-    }
-    .footer-links-group, .contact-btn-group, .logo-gallery {
+    .footer-links-group, .contact-btn-group {
         align-items: center;
-        justify-content: center;
     }
 }
 
@@ -310,15 +290,12 @@ body {
 /* -------------------------------------- */
 
 #page-content {
-    /* --- STICKY FOOTER SOLUTION: PART 2 --- */
-    flex-grow: 1; /* This ensures the main content takes up ALL remaining space */
+    /* Resets Flexbox property */
+    flex-grow: unset; 
     
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    
-    /* CRITICAL FIX: Stops content inside from pushing the page boundary */
-    overflow: hidden; 
 }
 
 .hero-section {
