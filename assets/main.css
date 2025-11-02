@@ -1,3 +1,170 @@
+/* --- Global Variables and Reset --- */
+:root {
+    --color-primary: #1C2E46; /* Dark Blue */
+    --color-secondary: #E3EEF7; /* Light Blue/Off-White */
+    --color-gradient-light: #F7F7F0; /* Lightest Background */
+    --color-accent: #ADD8E6; /* Light Blue Accent */
+    --color-text-light: #ffffff;
+    --color-text-dark: #1C2E46;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--color-gradient-light); /* Light background aesthetic */
+    color: var(--color-text-dark);
+}
+
+/* -------------------------------------- */
+/* --- 1. Floating Overlay Icon (Trigger) --- */
+/* -------------------------------------- */
+#nav-trigger {
+    position: fixed;
+    top: 20px; /* Offset from the edge */
+    right: 20px; /* Offset from the edge */
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex; /* Centers the bars */
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    z-index: 1001; /* Must be above the main content */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+#nav-trigger .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-text-light);
+    transition: all 0.3s;
+}
+
+/* Visibility Control (Scroll) */
+#nav-trigger.is-hidden {
+    transform: translateY(-100px); /* Move out of view when scrolling down */
+    opacity: 0;
+}
+
+
+/* -------------------------------------- */
+/* --- 2. Navigation Menu (Overlay) --- */
+/* -------------------------------------- */
+#nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(28, 46, 70, 0.98); /* Dark Blue with slight transparency */
+    color: var(--color-text-light);
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#nav-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#nav-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.overlay-menu ul {
+    list-style: none;
+    text-align: center;
+}
+
+.overlay-menu a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 2.5rem;
+    padding: 15px 0;
+    display: block;
+    transition: color 0.3s;
+}
+
+.overlay-menu a:hover {
+    color: var(--color-accent); /* Highlight on hover */
+}
+
+/* Close Button (X) */
+#nav-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+/* AI Decision: Spin/Fade-Out Animation for closing */
+#nav-close.animate-close {
+    transform: rotate(180deg);
+    opacity: 0;
+}
+
+/* -------------------------------------- */
+/* --- 3. Standardized Footer Component --- */
+/* -------------------------------------- */
+.site-footer {
+    background-color: var(--color-primary); /* Dark Blue background */
+    color: var(--color-text-light);
+    padding: 40px 20px;
+    margin-top: 50px; /* Separates it from main content */
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Multi-column structure */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-footer h3, .site-footer h4 {
+    color: var(--color-accent);
+    margin-bottom: 15px;
+}
+
+.site-footer p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.site-footer ul {
+    list-style: none;
+}
+
+.site-footer a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.site-footer a:hover {
+    color: var(--color-accent);
+}
+
 /* --- New Styles for Updated Footer Structure --- */
 
 .footer-logo {
@@ -48,4 +215,114 @@
 /* Override existing link styling for the footer's nested groups */
 .footer-links-group a, .contact-btn-group a {
     width: fit-content; /* Makes the hover effect cleaner */
+}
+
+/* Responsiveness for Footer */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        text-align: center;
+    }
+    .footer-links-group, .contact-btn-group {
+        align-items: center;
+    }
+    .footer-links ul, .footer-legal ul {
+        padding-left: 0;
+    }
+}
+
+
+/* -------------------------------------- */
+/* --- 4. Main Content Styling (Example) --- */
+/* -------------------------------------- */
+/* Use this section to add specific styles for classes like .hero-title, .cta-button, etc. */
+
+#page-content {
+    min-height: 50vh; /* Ensures content pushes the footer down */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: var(--color-secondary);
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+/* --- Styles for services.html (Services Page) --- */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.service-card {
+    background-color: var(--color-secondary); /* Light Blue/Off-White background */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(28, 46, 70, 0.2);
+}
+
+.card-title {
+    color: var(--color-primary); /* Dark Blue heading */
+    margin-bottom: 10px;
+}
+
+.card-description {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.card-cta {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--color-accent); /* Light Blue Accent button */
+    color: var(--color-primary);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
 }
