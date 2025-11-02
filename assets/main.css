@@ -8,20 +8,27 @@
     --color-text-dark: #1C2E46;
 }
 
-/* --- CRITICAL STRUCTURAL FIX: Hide Component Placeholders until JS loads content --- */
+/* --- CRITICAL STRUCTURAL FIXES --- */
+
+/* FIX #1: Prevent "1" from appearing by removing all list style context from the container */
+#nav-overlay-container, #nav-overlay-container * {
+    list-style: none !important;
+}
+
+/* FIX #2: Hide the component placeholders on load (FOUC fix) */
 #nav-overlay-container, #footer-container {
     visibility: hidden;
     height: 0;
     overflow: hidden;
 }
 
-/* This is overridden by the JS once content is loaded, preventing Flash of Unstyled Content (FOUC) */
+/* When the JS loads the content, the placeholders are made visible again */
 #nav-overlay-container:not(:empty), #footer-container:not(:empty) {
     visibility: visible;
     height: auto;
     overflow: visible;
 }
-/* --- END CRITICAL FIX --- */
+/* --- END CRITICAL STRUCTURAL FIXES --- */
 
 
 /* --- CRITICAL GLOBAL RESET AND BOUNDARY FIX --- */
@@ -283,7 +290,7 @@ body {
 
 
 /* -------------------------------------- */
-/* --- 5. Home Page Content (index.html) Styles --- (NEW) */
+/* --- 5. Home Page Content (index.html) Styles --- */
 /* -------------------------------------- */
 
 .container {
@@ -321,21 +328,10 @@ body {
     background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-gradient-light) 100%); 
     min-height: 550px; 
     display: flex;
-    flex-direction: column; /* Allows welcome message to stack above main content */
+    flex-direction: column; 
     align-items: center;
     justify-content: center;
     overflow: hidden; 
-}
-
-.welcome-message {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: var(--color-primary);
-    margin-bottom: 15px;
-    position: relative;
-    z-index: 3;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
 }
 
 .hero-content {
@@ -343,18 +339,23 @@ body {
     z-index: 2; 
 }
 
+/* DESIGN FIX: Main heading size and structure */
 #hero-section h1 {
-    font-size: 3.5rem; 
+    font-size: 4rem; /* HUGE, PROFESSIONAL WELCOME */
     margin-bottom: 20px;
     line-height: 1.1;
+    font-weight: 900;
 }
 
+/* Adjusted H2 size to be the second line of content */
 #hero-section h2 {
     font-size: 1.6rem; 
     font-weight: 300;
     max-width: 900px;
     margin: 0 auto;
+    color: var(--color-primary);
 }
+
 
 /* --- WHY TRUST SECTION GRID --- */
 #why-trust {
