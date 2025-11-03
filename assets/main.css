@@ -109,14 +109,24 @@ body {
 .overlay-menu a {
     color: var(--color-text-light);
     text-decoration: none;
-    font-size: 2.5rem;
-    padding: 15px 0;
+    font-size: 1.5rem; /* Reduced size for professional look */
+    font-weight: 600; /* Bolder text for clarity */
+    padding: 8px 0; /* Reduced padding/spacing */
     display: block;
     transition: color 0.3s;
 }
 
 .overlay-menu a:hover {
     color: var(--color-accent); /* Highlight on hover */
+    text-decoration: underline; /* Added professional underline */
+    text-underline-offset: 4px;
+}
+
+/* Ensure the text is smaller on very small screens for mobile fit */
+@media (max-width: 480px) {
+    .overlay-menu a {
+        font-size: 1.25rem;
+    }
 }
 
 /* Close Button (X) */
