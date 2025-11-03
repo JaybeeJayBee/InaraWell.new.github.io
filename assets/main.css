@@ -381,44 +381,50 @@ body {
     color: var(--color-primary); /* Dark text for clarity */
 }
 
-/* Updated Welcome Heading (Now inside Hero) */
+/* -------------------------------------- */
+/* --- COMBINED HEADER / WELCOME ANIMATION --- */
+/* -------------------------------------- */
+
+.combined-hero-section {
+    background-color: var(--color-gradient-light); /* Light background for the whole section */
+    padding-bottom: 0;
+    position: relative;
+    overflow: hidden;
+    /* Clean separator from body background if necessary, but keep it light */
+    border-bottom: 5px solid var(--color-secondary); 
+}
+
 .main-welcome-heading {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--color-text-light); /* White text inside dark hero */
-    padding: 0 0 20px 0; 
-    letter-spacing: -0.5px;
-    /* Added to center the text above the titles */
-    width: 100%;
-    margin: 0 auto; 
-}
-
-.accent-background {
-    background-color: var(--color-secondary); /* Light Blue/Off-White */
-}
-
-.center-text {
     text-align: center;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    padding: 60px 20px 20px; /* Separating from the hero block */
+    letter-spacing: -0.5px;
 }
 
-/* 1. HERO SECTION (Unified Header Block) */
+/* Welcome Heading Animation */
+.main-welcome-heading.animated-scale {
+    animation: scaleZoom 4s ease-in-out infinite;
+}
+
+@keyframes scaleZoom {
+    0% { transform: scale(1.0); }
+    50% { transform: scale(1.03); } /* Zoom in slightly */
+    100% { transform: scale(1.0); } /* Zoom back out */
+}
+
+/* 1. HERO SECTION (Contained within the combined header) */
 .hero {
     position: relative;
-    height: 550px; /* Increased height to accommodate the welcome text */
+    height: 400px; /* Slightly reduced height since the Welcome text is outside */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-text-light); 
+    color: var(--color-primary); /* Dark text over the light background */
     text-align: center;
-    margin-bottom: 0; 
-    border-bottom: 5px solid var(--color-accent); 
+    margin-bottom: 0;
 }
-/* Reusing the styling of the Hero on the new unified block */
-.full-header-block {
-    background-color: var(--color-primary); /* Ensures background is dark blue */
-    padding-top: 50px;
-}
-
 
 .hero-background-image {
     position: absolute;
@@ -426,11 +432,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Using a dark overlay for high contrast text */
-    background: url('https://images.unsplash.com/photo-1517430816045-df4b7de1168b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80') no-repeat center center/cover;
-    background-color: var(--color-primary); 
-    mix-blend-mode: multiply; 
-    opacity: 1; 
+    /* Swapping to a light, calming background for the light-themed hero */
+    background: url('https://images.unsplash.com/photo-1541819662772-50d40e163b4b') no-repeat center center/cover;
+    background-color: var(--color-secondary); /* Light blue base */
+    mix-blend-mode: soft-light; /* Softens the image into the light background */
+    opacity: 0.8; 
     z-index: 1;
 }
 
@@ -438,41 +444,30 @@ body {
     position: relative;
     z-index: 2;
     padding: 20px;
-    /* Removed the inner background color since the hero is now the background */
-    background-color: transparent; 
-    border-radius: 10px;
-    /* Center all items */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background-color: transparent; /* REMOVED DARK BLOCK */
+    border-radius: 0;
 }
 
 .hero-main-title {
-    font-size: 3.8rem;
-    margin-bottom: 15px;
+    font-size: 3.2rem; /* Adjusted font size */
+    margin-bottom: 10px;
+    text-shadow: none;
     font-weight: 900;
     letter-spacing: -1px;
+    color: var(--color-primary); /* Dark Blue text */
 }
 
 .hero-sub-title {
-    font-size: 1.8rem;
-    font-weight: 300;
-    margin-bottom: 0; /* Removed bottom margin since CTA is gone */
+    font-size: 1.5rem; /* Adjusted font size */
+    font-weight: 400;
+    text-shadow: none;
+    margin-bottom: 0; /* CTA is removed */
+    color: var(--color-primary); /* Dark Blue text */
 }
 
-/* --- Welcome To InaraWell Zoom Animation --- */
-.animated-zoom {
-    animation: simpleZoom 4s ease-in-out infinite alternate;
-}
-
-@keyframes simpleZoom {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.03);
-    }
+/* Hero CTA is now deprecated/removed */
+.hero-cta {
+    display: none; 
 }
 
 
@@ -483,6 +478,8 @@ body {
     padding: 100px 0;
     position: relative;
 }
+
+/* ... (REST OF THE CSS CODE FOR SECTIONS 3, 4, 5 REMAINS UNCHANGED) ... */
 
 .grid-container {
     display: grid;
@@ -602,33 +599,42 @@ body {
 }
 
 /* -------------------------------------- */
-/* --- FLOATING BUBBLES ANIMATION (FIXED & VISIBLE) --- */
+/* --- FLOATING BUBBLES ANIMATION (HEADER SPECIFIC) --- */
 /* -------------------------------------- */
 
-.floating-bubbles-container {
+/* New Container for Header Bubbles */
+.header-bubbles-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Below the content (z-index: 2) */
+    z-index: 1; /* Below the text (z-index: 2) */
     overflow: hidden;
-    pointer-events: none; /* Crucial: ensures bubbles don't block clicks on content */
+    pointer-events: none;
 }
 
-/* Targeting ONLY the bubbles in the new header section */
-.header-bubbles .bubble {
-    /* Use Primary Dark Blue for a subtle difference in the main hero */
-    background-color: rgba(28, 46, 70, 0.6); /* --color-primary with high opacity */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+/* Original Bubbles Container for Why Trust Section */
+.floating-bubbles-container {
+    /* Kept original styles: position absolute, z-index 1, etc. */
+    /* Only ensure it does not conflict with the new header container */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+    overflow: hidden;
+    pointer-events: none;
 }
 
 .bubble {
+    /* Styles remain the same for both containers */
     position: absolute;
     display: block;
     width: 30px; 
     height: 30px;
-    background-color: rgba(173, 216, 230, 0.6); /* --color-accent with high opacity */
+    background-color: rgba(173, 216, 230, 0.6); 
     bottom: -100px;
     border-radius: 50%;
     animation: animate 40s linear infinite; 
@@ -636,7 +642,7 @@ body {
     box-shadow: 0 0 10px var(--color-accent); 
 }
 
-/* Individual bubble settings (increased size and adjusted duration for slow movement) */
+/* Individual bubble settings and @keyframes remain unchanged */
 .bubble:nth-child(1) { left: 15%; width: 100px; height: 100px; animation-delay: 0s; animation-duration: 25s; opacity: 1; }
 .bubble:nth-child(2) { left: 5%; width: 30px; height: 30px; animation-delay: 2s; animation-duration: 35s; opacity: 0.8; }
 .bubble:nth-child(3) { left: 80%; width: 50px; height: 50px; animation-delay: 4s; animation-duration: 20s; opacity: 1; }
@@ -654,7 +660,7 @@ body {
         opacity: 0;
     }
     10% {
-        opacity: 1; /* Keep bubbles visible longer */
+        opacity: 1; 
     }
     90% {
         opacity: 1;
@@ -669,18 +675,17 @@ body {
 /* --- Responsive Adjustments for Homepage --- */
 @media (max-width: 900px) {
     .section-title { font-size: 2rem; }
-    .hero-main-title { font-size: 3rem; }
-    .hero-sub-title { font-size: 1.5rem; }
+    .hero-main-title { font-size: 2.8rem; } /* Adjusted */
+    .hero-sub-title { font-size: 1.4rem; } /* Adjusted */
     .grid-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
     .full-span { grid-column: auto; }
 }
 @media (max-width: 600px) {
-    .main-welcome-heading { font-size: 2rem; padding-top: 40px; }
-    .hero { height: 450px; }
+    .main-welcome-heading { font-size: 2.5rem; padding-top: 40px; padding-bottom: 10px; } /* Adjusted */
+    .hero { height: 300px; } /* Adjusted */
     .hero-main-title { font-size: 2.2rem; }
     .hero-sub-title { font-size: 1.1rem; }
     .section { padding: 50px 0; }
     .section-card { border-left: none; border-bottom: 5px solid var(--color-accent); }
     #process-list { flex-direction: column; align-items: center; }
 }
-
