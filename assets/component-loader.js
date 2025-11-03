@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Run Navigation setup after the nav.html content has been injected
         setupNavigation();
     });
-    loadComponent('footer-container', 'components/footer.html');
+    loadComponent('footer-container', 'components/footer.html').then(() => {
+        // Run Footer script after injection
+        setupFooterYear();
+    });
 
     // --- Navigation and Floating Icon Logic ---
     function setupNavigation() {
@@ -63,5 +66,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             lastScrollTop = st <= 0 ? 0 : st; // For mobile browsers
         }, false);
+    }
+    
+    // --- Footer Year Script ---
+    function setupFooterYear() {
+        const yearElement = document.getElementById("currentYear");
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+    }
+    
+    // --- FAQ Accordion Logic (Your Custom Script) ---
+    function setupFAQAccordion() {
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const faqItem = item.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+
+                // Toggle active class on the clicked item
+                faqItem.classList.toggle('active');
+
+                // Show or hide the answer with a smooth animation
+                if (faqItem.classList.contains('active')) {
+                    // Close other active items when a new one is opened (optional but clean)
+                    document.querySelectorAll('.faq-item.active').forEach(otherItem => {
+                        if (otherItem !== faqItem) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+                        }
+                    });
+                    
+                    answer.style.maxHeight = answer.scrollHeight + 'px'; // Set height to scroll height
+                } else {
+                    answer.style.maxHeight = '0'; // Collapse
+                }
+            });
+        });
+    }
+
+    // Run the FAQ setup if we are on a page with the FAQ content
+    if (document.querySelector('.faq-container')) {
+        setupFAQAccordion();
     }
 });
