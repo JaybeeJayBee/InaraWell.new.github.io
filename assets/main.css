@@ -895,3 +895,19 @@ body {
     .section-title { font-size: 2rem; }
     .benefits-grid { grid-template-columns: 1fr; }
 }
+/* --- Professional Navigation Info Styling --- */
+.overlay-info {
+    position: absolute; /* Position it cleanly at the bottom */
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.overlay-info h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent); /* Use accent color to highlight site name */
+    margin-top: 20px;
+}
