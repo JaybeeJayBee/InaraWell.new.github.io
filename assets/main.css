@@ -580,6 +580,11 @@ body {
 .cta-final-section {
     background-color: var(--color-secondary);
     padding: 100px 0;
+    /* FIX: Ensures the container contents (including the inline-block button) are centered */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
 }
 
 .final-cta-button {
