@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InaraWell - Contact Us</title>
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/bMgw0WCF/Smart-Select-20251001-110956-Gallery.jpg">
+    <link rel="stylesheet" href="assets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <div id="nav-overlay-container"></div>
+    
+    <main id="page-content">
+        
+        <header class="contact-hero">
+            <div class="content-wrapper">
+                <h1>Let's Connect.</h1>
+                <p>We'd love to hear from you. Send us a message, or connect with us on social media.</p>
+            </div>
+        </header>
+    
+        <div class="contact-section">
+    
+            <div class="contact-card form-card">
+                <h2>Send us a message</h2>
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="424ff0b3-9223-42fd-8b2e-f3f761e9d05c">
+                    
+                    <input type="hidden" name="redirect" value="https://www.inarawell.com/contact-us/thank-you">
+                    
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required placeholder="john.doe@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Question about your journals">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required placeholder="Type your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+            </div>
+    
+            <div class="contact-card">
+                <h2>Connect with us</h2>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:Care@inarawell.com">Care@inarawell.com</a>
+                    </div>
+                </div>
+    
+                <p style="margin-top: 2rem;">Follow us for daily inspiration and updates.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/inarawell?igsh=dGp3YXdlcmMxZWl0" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@inarawell?si=TClzmo4vnROw1h6m" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.threads.net/@inarawell" target="_blank" aria-label="Threads"><i class="fab fa-threads"></i></a>
+                </div>
+            </div>
+    
+        </div>
+        
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="assets/component-loader.js"></script>
+
+</body>
+</html>
