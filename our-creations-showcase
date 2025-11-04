@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InaraWell - Home</title>
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/bMgw0WCF/Smart-Select-20251001-110956-Gallery.jpg">
+    <link rel="stylesheet" href="assets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <div id="nav-overlay-container"></div>
+    
+ <main id="page-content">
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Creations Showcase | InaraWell</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1C2E46;
+            --secondary: #E3EEF7;
+            --light-bg: #F7F7F0;
+            --accent-blue: #ADD8E6;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            /* Removed Footer variables */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            color: var(--primary);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex-grow: 1; 
+        }
+        
+        /* Header Styles */
+        .showcase-header {
+            text-align: center;
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--secondary) 100%);
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .showcase-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.ibb.co/jkZ7ySyc/Picsart-25-08-03-15-00-47-388.jpg') center/cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        .showcase-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            background: linear-gradient(to right, var(--primary), #3a5a80);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .showcase-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0.9;
+        }
+        
+        /* Category Styles */
+        .category-section {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .category-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .category-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .category-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-blue);
+            border-radius: 3px;
+        }
+        
+        .category-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .product-content p {
+            margin-bottom: 20px;
+            color: var(--primary);
+            opacity: 0.9;
+        }
+        
+        /* Button Styles */
+        .coming-soon-btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: default;
+            pointer-events: none;
+            border: none;
+            width: 100%;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .view-more-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(28, 46, 70, 0.2);
+        }
+        
+        .view-more-btn:hover {
+            background: #142538;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(28, 46, 70, 0.3);
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Category Animation Delays */
+        .featured-section {
+            animation-delay: 0.2s;
+        }
+        
+        .complimentary-section {
+            animation-delay: 0.4s;
+        }
+        
+        .premium-section {
+            animation-delay: 0.6s;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .showcase-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .showcase-header p {
+                font-size: 1rem;
+            }
+            
+            .category-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Removed Footer Styles */
+    </style>
+</head>
+<body>
+    <header class="showcase-header">
+        <div class="container">
+            <h1>Our Creations Showcase</h1>
+            <p>Welcome to our digital sanctuary of transformation. Here you'll discover our carefully crafted self-help resources, each designed to illuminate your path to personal growth and well-being.</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="category-section featured-section">
+            <div class="category-header">
+                <h2>Featured Creations</h2>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.ibb.co/jkZ7ySyc/Picsart-25-08-03-15-00-47-388.jpg" alt="The Clarity Compass Journal">
+                    </div>
+                    <div class="product-content">
+                        <h3>The Clarity Compass Journal</h3>
+                        <p>Uncover your true north with this interactive digital journal designed to illuminate your purpose and guide your daily actions. Our team is meticulously crafting prompts and exercises to help you navigate life's complexities with newfound clarity.</p>
+                        <button class="coming-soon-btn">Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.ibb.co/nqCS432y/1754230065509.jpg" alt="Mindful Morning Mastery Audio Series">
+                    </div>
+                    <div class="product-content">
+                        <h3>Mindful Morning Mastery Audio Series</h3>
+                        <p>Transform your mornings and set a powerful tone for your day. This calming audio series will feature guided meditations, positive affirmations, and gentle breathwork exercises to cultivate a serene and focused start, even amidst the busiest schedules.</p>
+                        <button class="coming-soon-btn">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="category-section complimentary-section">
+            <div class="category-header">
+                <h2>Complimentary Creations</h2>
+                <p>These valuable resources are designed to complement your journey of growth and well-being.</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.ibb.co/60tdbZxM/1754230377299.jpg" alt="Daily Affirmation Deck">
+                    </div>
+                    <div class="product-content">
+                        <h3>Daily Affirmation Deck (Digital Cards)</h3>
+                        <p>Start each day with a boost of positivity. This beautifully designed digital deck will offer a fresh affirmation daily to inspire confidence, gratitude, and resilience, accessible right from your device.</p>
+                        <button class="coming-soon-btn">Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.ibb.co/JwHWDYrH/Picsart-25-08-03-15-45-14-891.jpg" alt="Guided Breathwork for Stress Release">
+                    </div>
+                    <div class="product-content">
+                        <h3>Guided Breathwork for Stress Release (Short Series)</h3>
+                        <p>Find calm in minutes with these powerful breathwork exercises. This concise audio series provides simple yet effective techniques to quickly reduce stress and promote relaxation whenever you need it most.</p>
+                        <button class="coming-soon-btn">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-container">
+                <a href="https://www.inarawell.com/our-creations-showcase/complimentary-creations" class="view-more-btn">View More Complimentary Creations</a>
+            </div>
+        </section>
+        
+        <section class="category-section premium-section">
+            <div class="category-header">
+                <h2>Premium Creations</h2>
+                <p>Dive deeper into transformative experiences with our meticulously developed premium offerings.</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.ibb.co/Cp0J1rZH/Picsart-25-08-03-15-25-02-586.jpg" alt="The Visionary's Blueprint Masterclass">
+                    </div>
+                    <div class="product-content">
+                        <h3>The Visionary's Blueprint Masterclass</h3>
+                        <p>Ready to manifest your biggest dreams? This immersive masterclass will walk you through a step-by-step process for defining, refining, and actively building the life you envision, complete with advanced tools and exclusive insights.</p>
+                        <button class="coming-soon-btn">Coming Soon</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.ibb.co/Lz8F1wkF/Picsart-25-08-03-15-32-48-201.jpg" alt="Personalized Breakthrough Coaching Session">
+                    </div>
+                    <div class="product-content">
+                        <h3>Personalized Breakthrough Coaching Session (Discovery Call)</h3>
+                        <p>Unlock your full potential with a one-on-one session tailored specifically to your unique challenges and aspirations. This premium offering will provide personalized guidance and actionable strategies to help you overcome obstacles and achieve significant breakthroughs.</p>
+                        <button class="coming-soon-btn">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-container">
+                <a href="https://www.inarawell.com/our-creations-showcase/premium-creations" class="view-more-btn">View More Premium Creations</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simple animation trigger
+            const sections = document.querySelectorAll('.category-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Removed code to update the current year for the footer
+        });
+    </script>
+</body>
+</html>
+
+</main>
+
+    <div id="footer-container"></div>
+
+    <script src="assets/component-loader.js"></script>
+
+</body>
+</html>
