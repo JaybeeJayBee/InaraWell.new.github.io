@@ -1571,13 +1571,13 @@ body {
         font-size: 1rem;
     }
 }
-/* --- New Styles for Submenu Dropdown (FINAL ALIGNMENT CORRECTION) --- */
+/* --- New Styles for Submenu Dropdown (FINAL ALIGNMENT & WRAPPING CORRECTION) --- */
 
 .has-submenu {
     position: relative;
 }
 
-/* Target the submenu toggle (A or SPAN) and force it to look like a centered primary link */
+/* Target the submenu toggle (A or SPAN) */
 .overlay-menu .submenu-toggle {
     /* Inherit main link properties for text and spacing */
     color: var(--color-text-light);
@@ -1586,19 +1586,20 @@ body {
     font-weight: 600;
     padding: 8px 0;
     
-    /* FIX: Use Flexbox to align content (Text + Arrow) */
-    display: flex;
-    justify-content: center; /* Center the text and arrow block horizontally */
-    align-items: center; /* Align items vertically */
-    width: 100%; /* Ensure it takes up the full width */
-    cursor: pointer; /* Give the SPAN a clickable feel */
+    /* FIX: Change display to block, which allows text to wrap naturally like standard links. 
+       The parent UL's 'text-align: center' handles the centering for the wrapped text. */
+    display: block; 
+    
+    /* REMOVED: display: flex; justify-content: center; align-items: center; */
+    
+    cursor: pointer; 
     transition: color 0.3s;
 }
 
 /* Ensure the non-clickable SPAN doesn't get text decoration on hover, only color change */
 .overlay-menu .submenu-toggle:hover {
-    color: var(--color-accent); /* Text highlight on hover */
-    text-decoration: none; /* Crucial: Prevent underline on the SPAN */
+    color: var(--color-accent);
+    text-decoration: none; /* Prevents underline on the SPAN */
 }
 
 
@@ -1629,7 +1630,7 @@ body {
     padding: 6px 0;
     opacity: 0.9;
     text-decoration: none;
-    display: block; /* Ensure sub-links take full line width for consistent hover area */
+    display: block; 
 }
 
 .overlay-menu .submenu a:hover {
@@ -1637,7 +1638,9 @@ body {
     text-decoration: underline;
 }
 
+/* Arrow Styling */
 .submenu-arrow {
+    display: inline-block; /* Keeps it in line with the wrapping text */
     margin-left: 10px;
     font-size: 1.1rem;
     transition: transform 0.3s ease-in-out;
