@@ -1571,3 +1571,48 @@ body {
         font-size: 1rem;
     }
 }
+/* --- New Styles for Submenu Dropdown --- */
+
+.has-submenu {
+    position: relative; /* Allows us to position sub-elements if needed */
+}
+
+.overlay-menu .submenu {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease-in-out;
+    max-height: 500px; /* Large max-height for smooth transition */
+}
+
+.overlay-menu .submenu.hidden {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.overlay-menu .submenu a {
+    font-size: 1.8rem; /* Smaller size for sub-links */
+    padding: 8px 0;
+    opacity: 0.8;
+}
+
+.overlay-menu .submenu a:hover {
+    opacity: 1;
+}
+
+.submenu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submenu-arrow {
+    margin-left: 15px;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.submenu-arrow.rotate {
+    transform: rotate(180deg); /* The up arrow effect */
+}
