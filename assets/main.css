@@ -1577,7 +1577,7 @@ body {
     position: relative;
 }
 
-/* Target the submenu toggle (A or SPAN) */
+/* Target the submenu toggle (A or SPAN) and force it to look like a centered primary link */
 .overlay-menu .submenu-toggle {
     /* Inherit main link properties for text and spacing */
     color: var(--color-text-light);
@@ -1586,11 +1586,9 @@ body {
     font-weight: 600;
     padding: 8px 0;
     
-    /* FIX: Change display to block, which allows text to wrap naturally like standard links. 
-       The parent UL's 'text-align: center' handles the centering for the wrapped text. */
+    /* FIX: Ensure it displays as a block for natural text wrapping and is centered */
     display: block; 
-    
-    /* REMOVED: display: flex; justify-content: center; align-items: center; */
+    text-align: center; /* Center the text block itself */
     
     cursor: pointer; 
     transition: color 0.3s;
@@ -1638,9 +1636,9 @@ body {
     text-decoration: underline;
 }
 
-/* Arrow Styling */
+/* Arrow Styling (Only visible for Creations Showcase) */
 .submenu-arrow {
-    display: inline-block; /* Keeps it in line with the wrapping text */
+    display: inline-block;
     margin-left: 10px;
     font-size: 1.1rem;
     transition: transform 0.3s ease-in-out;
