@@ -42,19 +42,19 @@ body {
 /* -------------------------------------- */
 #nav-trigger {
     position: fixed;
-    top: 20px; 
-    right: 20px; 
+    top: 20px; /* Offset from the edge */
+    right: 20px; /* Offset from the edge */
     width: 50px;
     height: 50px;
     background-color: var(--color-primary);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    display: flex; 
+    display: flex; /* Centers the bars */
     flex-direction: column;
     justify-content: space-around;
     padding: 10px;
-    z-index: 1001; 
+    z-index: 1001; /* Must be above the main content */
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
@@ -67,14 +67,13 @@ body {
 
 /* Visibility Control (Scroll) */
 #nav-trigger.is-hidden {
-    transform: translateY(-100px); 
+    transform: translateY(-100px); /* Move out of view when scrolling down */
     opacity: 0;
 }
 
 
 /* -------------------------------------- */
 /* --- 2. Navigation Menu (Overlay) --- */
-/* --- FINAL ALIGNMENT AND SIZING FIXES --- */
 /* -------------------------------------- */
 #nav-overlay {
     position: fixed;
@@ -82,12 +81,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* WOW-ING DESIGN: GLASSMORHISM + DEEPER DARK BLUE */
-    background-color: rgba(14, 25, 41, 0.95); 
-    backdrop-filter: blur(8px); 
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    
+    background-color: rgba(28, 46, 70, 0.98); /* Dark Blue with slight transparency */
     color: var(--color-text-light);
     z-index: 1000;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
@@ -107,61 +101,46 @@ body {
     visibility: visible;
 }
 
-.overlay-menu {
-    width: 100%; /* Ensure the menu wrapper takes full width */
-}
-
 .overlay-menu ul {
     list-style: none;
     text-align: center;
-    padding: 20px 20px; /* Add horizontal padding for safety */
-    margin: 0 auto; /* Center the UL */
-    max-width: 400px; /* Limit the max width for better visual appeal on large screens */
 }
 
 .overlay-menu a {
     color: var(--color-text-light);
     text-decoration: none;
-    /* REDUCED SIZE */
-    font-size: 1.3rem; 
-    font-weight: 700; 
-    /* REDUCED SPACING */
-    padding: 6px 0; 
+    font-size: 1.5rem; /* Reduced size for professional look */
+    font-weight: 600; /* Bolder text for clarity */
+    padding: 8px 0; /* Reduced padding/spacing */
     display: block;
-    transition: color 0.3s, text-shadow 0.3s;
-    /* Removed white-space: nowrap for better wrapping on small devices */
+    transition: color 0.3s;
 }
 
-/* WOW-ING DESIGN: DYNAMIC HOVER EFFECT */
-.overlay-menu a:hover, .overlay-menu .submenu-toggle:hover {
-    color: var(--color-accent); 
-    text-decoration: none; 
+.overlay-menu a:hover {
+    color: var(--color-accent); /* Highlight on hover */
+    text-decoration: underline; /* Added professional underline */
     text-underline-offset: 4px;
-    text-shadow: 0 0 10px rgba(173, 216, 230, 0.8); 
 }
 
 /* Ensure the text is smaller on very small screens for mobile fit */
 @media (max-width: 480px) {
     .overlay-menu a {
-        font-size: 1.15rem; 
+        font-size: 1.25rem;
     }
 }
 
 /* Close Button (X) */
 #nav-close {
     position: absolute;
-    top: 20px; /* Moved up slightly */
-    right: 20px; 
-    font-size: 2.5rem; /* Reduced size */
+    top: 30px;
+    right: 30px;
+    font-size: 3rem;
     background: none;
     border: none;
-    color: var(--color-accent); 
+    color: var(--color-text-light);
     cursor: pointer;
     padding: 10px;
-    transition: transform 0.5s, opacity 0.5s, color 0.3s;
-}
-#nav-close:hover {
-    color: var(--color-text-light); 
+    transition: transform 0.5s, opacity 0.5s;
 }
 
 /* AI Decision: Spin/Fade-Out Animation for closing */
@@ -169,106 +148,6 @@ body {
     transform: rotate(180deg);
     opacity: 0;
 }
-
-/* --- Professional Navigation Info Styling --- */
-.overlay-info {
-    position: absolute; 
-    bottom: 20px; /* Reduced distance from the bottom */
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 0 20px;
-}
-
-.overlay-info h3 {
-    font-size: 1.3rem; /* Reduced size */
-    font-weight: 700;
-    color: var(--color-accent); 
-    margin-top: 10px;
-}
-.overlay-info p {
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
-
-/* --- New Styles for Submenu Dropdown --- */
-
-.has-submenu {
-    position: relative;
-    /* Added margin-bottom for better separation between main links */
-    margin-bottom: 5px; 
-}
-
-/* Target the submenu toggle (A or SPAN) and force it to look like a centered primary link */
-.overlay-menu .submenu-toggle {
-    color: var(--color-text-light);
-    text-decoration: none;
-    font-size: 1.3rem; 
-    font-weight: 700; 
-    padding: 6px 0;
-    display: block; 
-    text-align: center; 
-    cursor: pointer; 
-    transition: color 0.3s, text-shadow 0.3s;
-    /* Removed white-space: nowrap from here too */
-}
-@media (max-width: 480px) {
-    .overlay-menu .submenu-toggle {
-        font-size: 1.15rem; 
-    }
-}
-
-/* Submenu Links: These must be visually distinct and smaller */
-.overlay-menu .submenu {
-    list-style: none;
-    padding: 0; 
-    margin-top: 5px;
-    margin-bottom: 5px;
-    transition: all 0.3s ease-in-out;
-    max-height: 500px;
-    text-align: center; 
-}
-
-.overlay-menu .submenu.hidden {
-    max-height: 0;
-    overflow: hidden;
-    margin-bottom: 0;
-}
-
-.overlay-menu .submenu a, .overlay-menu .submenu span {
-    /* REDUCED SUB-LINK SIZE */
-    font-size: 0.9rem; 
-    font-weight: 400; 
-    /* REDUCED SPACING */
-    padding: 2px 0; 
-    opacity: 0.85; 
-    text-decoration: none;
-    display: block; 
-    transition: color 0.3s, opacity 0.3s;
-    /* Removed white-space: nowrap */
-}
-
-.overlay-menu .submenu a:hover, .overlay-menu .submenu span:hover {
-    opacity: 1;
-    text-decoration: underline;
-    text-shadow: none; 
-    color: var(--color-accent);
-}
-
-/* Arrow Styling */
-.submenu-arrow {
-    display: inline-block;
-    margin-left: 5px; 
-    font-size: 0.9rem; /* Reduced arrow size */
-    transition: transform 0.3s ease-in-out;
-    color: var(--color-accent); 
-}
-
-.submenu-arrow.rotate {
-    transform: rotate(180deg);
-}
-/* =========================================== */
-
 
 /* -------------------------------------- */
 /* --- 3. Standardized Footer Component --- */
@@ -331,22 +210,26 @@ body {
     display: flex;
     gap: 15px;
     font-size: 1.5rem;
+    /* Added display: block to ensure they render independently */
     align-items: center; 
 }
 
 .social-links a {
-    color: var(--color-text-light) !important; 
+    /* Explicitly setting color and opacity for immediate visibility */
+    color: var(--color-text-light) !important; /* Force white color */
     opacity: 1; 
     text-decoration: none;
     transition: color 0.3s;
+    /* Adding display: block to ensure the click area is correctly mapped */
     display: block;
 }
 
 .social-links a:hover {
-    color: var(--color-accent) !important; 
+    color: var(--color-accent) !important; /* Ensure hover uses accent */
 }
 
 .footer-bottom {
+    /* Tweak for perfect centering on all screen sizes */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -368,19 +251,19 @@ body {
 
 /* Override existing link styling for the footer's nested groups */
 .footer-links-group a, .contact-btn-group a {
-    width: fit-content; 
+    width: fit-content; /* Makes the hover effect cleaner */
 }
 
 /* Responsiveness for Footer */
 @media (max-width: 768px) {
     .footer-grid {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr); /* Two columns on tablet */
     }
 }
 
 @media (max-width: 480px) {
     .footer-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr; /* Single column on mobile */
         text-align: center;
     }
     .footer-links-group, .contact-btn-group {
@@ -493,7 +376,7 @@ body {
 }
 
 .section {
-    padding: 80px 0; 
+    padding: 80px 0; /* Increased vertical padding for more space and air */
     position: relative;
     overflow: hidden; 
 }
@@ -501,7 +384,7 @@ body {
 .section-title {
     text-align: center;
     color: var(--color-primary);
-    font-size: 2.5rem; 
+    font-size: 2.5rem; /* Larger, bolder titles */
     font-weight: 700;
     margin-bottom: 20px;
 }
@@ -511,8 +394,8 @@ body {
     max-width: 900px;
     margin: 0 auto 50px;
     font-size: 1.2rem;
-    line-height: 1.8; 
-    color: var(--color-primary); 
+    line-height: 1.8; /* Better readability */
+    color: var(--color-primary); /* Dark text for clarity */
 }
 
 /* -------------------------------------- */
@@ -520,10 +403,11 @@ body {
 /* -------------------------------------- */
 
 .combined-hero-section {
-    background-color: var(--color-gradient-light); 
+    background-color: var(--color-gradient-light); /* Light background for the whole section */
     padding-bottom: 0;
     position: relative;
     overflow: hidden;
+    /* Clean separator from body background if necessary, but keep it light */
     border-bottom: 5px solid var(--color-secondary); 
 }
 
@@ -532,7 +416,7 @@ body {
     font-size: 3.5rem;
     font-weight: 900;
     color: var(--color-primary);
-    padding: 60px 20px 20px; 
+    padding: 60px 20px 20px; /* Separating from the hero block */
     letter-spacing: -0.5px;
 }
 
@@ -543,18 +427,18 @@ body {
 
 @keyframes scaleZoom {
     0% { transform: scale(1.0); }
-    50% { transform: scale(1.03); } 
-    100% { transform: scale(1.0); } 
+    50% { transform: scale(1.03); } /* Zoom in slightly */
+    100% { transform: scale(1.0); } /* Zoom back out */
 }
 
 /* 1. HERO SECTION (Contained within the combined header) */
 .hero {
     position: relative;
-    height: 400px; 
+    height: 400px; /* Slightly reduced height since the Welcome text is outside */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-primary); 
+    color: var(--color-primary); /* Dark text over the light background */
     text-align: center;
     margin-bottom: 0;
 }
@@ -565,9 +449,10 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    /* Swapping to a light, calming background for the light-themed hero */
     background: url('https://images.unsplash.com/photo-1541819662772-50d40e163b4b') no-repeat center center/cover;
-    background-color: var(--color-secondary); 
-    mix-blend-mode: soft-light; 
+    background-color: var(--color-secondary); /* Light blue base */
+    mix-blend-mode: soft-light; /* Softens the image into the light background */
     opacity: 0.8; 
     z-index: 1;
 }
@@ -576,25 +461,25 @@ body {
     position: relative;
     z-index: 2;
     padding: 20px;
-    background-color: transparent; 
+    background-color: transparent; /* REMOVED DARK BLOCK */
     border-radius: 0;
 }
 
 .hero-main-title {
-    font-size: 3.2rem; 
+    font-size: 3.2rem; /* Adjusted font size */
     margin-bottom: 10px;
     text-shadow: none;
     font-weight: 900;
     letter-spacing: -1px;
-    color: var(--color-primary); 
+    color: var(--color-primary); /* Dark Blue text */
 }
 
 .hero-sub-title {
-    font-size: 1.5rem; 
+    font-size: 1.5rem; /* Adjusted font size */
     font-weight: 400;
     text-shadow: none;
-    margin-bottom: 0; 
-    color: var(--color-primary); 
+    margin-bottom: 0; /* CTA is removed */
+    color: var(--color-primary); /* Dark Blue text */
 }
 
 /* Hero CTA is now deprecated/removed */
@@ -605,6 +490,7 @@ body {
 
 /* 3. WHY TRUST SECTION (Modern Card Grid) */
 #why-trust {
+    /* More focus on the background gradient */
     background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-gradient-light) 100%);
     padding: 100px 0;
     position: relative;
@@ -622,10 +508,10 @@ body {
 .section-card {
     background-color: var(--color-text-light);
     padding: 30px;
-    border-radius: 12px; 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+    border-radius: 12px; /* Smoother corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow for a floating effect */
     transition: all 0.4s ease-in-out;
-    border-left: 5px solid var(--color-accent); 
+    border-left: 5px solid var(--color-accent); /* Accent line for techish feel */
     position: relative;
     z-index: 2;
 }
@@ -649,7 +535,7 @@ body {
 }
 
 .full-span {
-    grid-column: 1 / -1; 
+    grid-column: 1 / -1; /* Make the last card span the full width */
     text-align: center;
 }
 
@@ -675,7 +561,7 @@ body {
     background-color: var(--color-text-light);
     border: 1px solid var(--color-secondary);
     border-radius: 8px;
-    flex-basis: 250px; 
+    flex-basis: 250px; /* Fixed width for list items */
     max-width: 300px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
@@ -685,12 +571,12 @@ body {
     counter-increment: step-counter;
     position: absolute;
     left: 50%;
-    top: -20px; 
+    top: -20px; /* Move number outside the card */
     transform: translateX(-50%);
     width: 45px;
     height: 45px;
-    background-color: var(--color-primary); 
-    color: var(--color-text-light); 
+    background-color: var(--color-primary); /* Dark Blue background */
+    color: var(--color-text-light); /* White number text */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -711,6 +597,7 @@ body {
 .cta-final-section {
     background-color: var(--color-secondary);
     padding: 100px 0;
+    /* Removed previous Flexbox properties to rely on the simpler text-align fix */
 }
 
 .final-cta-button {
@@ -740,13 +627,15 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; 
+    z-index: 1; /* Below the text (z-index: 2) */
     overflow: hidden;
     pointer-events: none;
 }
 
 /* Original Bubbles Container for Why Trust Section */
 .floating-bubbles-container {
+    /* Kept original styles: position absolute, z-index 1, etc. */
+    /* Only ensure it does not conflict with the new header container */
     position: absolute;
     top: 0;
     left: 0;
@@ -758,6 +647,7 @@ body {
 }
 
 .bubble {
+    /* Styles remain the same for both containers */
     position: absolute;
     display: block;
     width: 30px; 
@@ -803,14 +693,14 @@ body {
 /* --- Responsive Adjustments for Homepage --- */
 @media (max-width: 900px) {
     .section-title { font-size: 2rem; }
-    .hero-main-title { font-size: 2.8rem; } 
-    .hero-sub-title { font-size: 1.4rem; } 
+    .hero-main-title { font-size: 2.8rem; } /* Adjusted */
+    .hero-sub-title { font-size: 1.4rem; } /* Adjusted */
     .grid-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
     .full-span { grid-column: auto; }
 }
 @media (max-width: 600px) {
-    .main-welcome-heading { font-size: 2.5rem; padding-top: 40px; padding-bottom: 10px; } 
-    .hero { height: 300px; } 
+    .main-welcome-heading { font-size: 2.5rem; padding-top: 40px; padding-bottom: 10px; } /* Adjusted */
+    .hero { height: 300px; } /* Adjusted */
     .hero-main-title { font-size: 2.2rem; }
     .hero-sub-title { font-size: 1.1rem; }
     .section { padding: 50px 0; }
@@ -819,7 +709,7 @@ body {
 }
 /* --- FIX: Forcing alignment of the final button --- */
 .center-text-fix {
-    text-align: center; 
+    text-align: center; /* This centers the inline/inline-block children like the button */
 }
 /* --- Styles for affiliate.html (Affiliate Program Page) --- */
 
@@ -997,7 +887,7 @@ body {
 
 .floating-element {
     position: absolute;
-    background: rgba(227, 238, 247, 0.6); 
+    background: rgba(227, 238, 247, 0.6); /* Using var(--color-secondary) */
     border-radius: 50%;
     animation: float 15s infinite linear;
 }
@@ -1014,7 +904,7 @@ body {
 }
 /* --- Professional Navigation Info Styling --- */
 .overlay-info {
-    position: absolute; 
+    position: absolute; /* Position it cleanly at the bottom */
     bottom: 50px;
     left: 0;
     width: 100%;
@@ -1025,7 +915,7 @@ body {
 .overlay-info h3 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-accent); 
+    color: var(--color-accent); /* Use accent color to highlight site name */
     margin-top: 20px;
 }
 /* --- Styles for faq.html (FAQ Page) --- */
@@ -1034,8 +924,8 @@ body {
 .content-section.hero-section, #faq-hero {
     text-align: center;
     padding: 60px 20px;
-    background-color: var(--color-accent); 
-    border-radius: 0; 
+    background-color: var(--color-accent); /* Light Blue Accent */
+    border-radius: 0; /* Remove previous border-radius */
     margin-bottom: 40px;
 }
 .section-header {
@@ -1077,10 +967,10 @@ body {
     align-items: center;
     padding: 20px 30px;
     cursor: pointer;
-    background-color: var(--color-secondary); 
+    background-color: var(--color-secondary); /* Light Blue/Off-White */
     font-weight: 600;
     transition: background-color 0.3s ease;
-    border: none; 
+    border: none; /* Ensure it looks like a clean panel */
     width: 100%;
     text-align: left;
 }
@@ -1090,7 +980,7 @@ body {
 }
 
 .faq-item.active .faq-question {
-    background-color: var(--color-accent); 
+    background-color: var(--color-accent); /* Highlight when active */
 }
 
 .faq-question h3 {
@@ -1109,14 +999,14 @@ body {
 }
 
 .faq-item.active .toggle-icon {
-    transform: rotate(45deg); 
+    transform: rotate(45deg); /* Plus sign turns into an X */
 }
 
 .faq-answer {
     padding: 0 30px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-in-out; 
+    transition: max-height 0.4s ease-in-out; /* Smooth transition */
 }
 
 .faq-answer p {
@@ -1470,12 +1360,96 @@ body {
         font-size: 1rem;
     }
 }
+/* --- New Styles for Submenu Dropdown (FINAL ALIGNMENT & WRAPPING CORRECTION) --- */
+
+.has-submenu {
+    position: relative;
+}
+
+/* Target the submenu toggle (A or SPAN) and force it to look like a centered primary link */
+.overlay-menu .submenu-toggle {
+    /* Inherit main link properties for text and spacing */
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 1.5rem; 
+    font-weight: 600;
+    padding: 8px 0;
+    
+    /* FIX: Ensure it displays as a block for natural text wrapping and is centered */
+    display: block; 
+    text-align: center; /* Center the text block itself */
+    
+    cursor: pointer; 
+    transition: color 0.3s;
+}
+
+/* Ensure the non-clickable SPAN doesn't get text decoration on hover, only color change */
+.overlay-menu .submenu-toggle:hover {
+    color: var(--color-accent);
+    text-decoration: none; /* Prevents underline on the SPAN */
+}
+
+
+/* Submenu Links: Keep these smaller than the primary links */
+.overlay-menu .submenu {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+    max-height: 500px;
+    text-align: center; 
+}
+
+.overlay-menu .submenu.hidden {
+    max-height: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.overlay-menu .submenu li {
+    padding: 0;
+}
+
+.overlay-menu .submenu a {
+    font-size: 1.2rem; 
+    font-weight: 400; 
+    padding: 6px 0;
+    opacity: 0.9;
+    text-decoration: none;
+    display: block; 
+}
+
+.overlay-menu .submenu a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Arrow Styling (Only visible for Creations Showcase) */
+.submenu-arrow {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease-in-out;
+    color: var(--color-text-light);
+}
+
+.submenu-arrow.rotate {
+    transform: rotate(180deg);
+}
+
+/* Mobile Adjustment: Ensure sub-links look good on tiny screens */
+@media (max-width: 480px) {
+    .overlay-menu .submenu a {
+        font-size: 1.1rem;
+    }
+}
 /* --- New Global Font Imports for Policies Page --- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
 
 /* --- Custom Policy Page Variables --- */
 :root {
-    --policy-accent: #ADD8E6; 
+    --policy-accent: #ADD8E6; /* Light Blue Accent for details */
     --policy-text: #1C2E46;
 }
 
@@ -1488,16 +1462,17 @@ body {
 
 .policy-header {
     text-align: center;
-    padding: 4rem 10px 2rem; 
+    padding: 4rem 10px 2rem; /* Adjusted padding */
 }
 
 .policies-title {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem; 
+    font-size: 3rem; /* Reduced for better mobile scaling */
     margin-bottom: 0.5rem;
     color: var(--color-primary);
     position: relative;
     display: inline-block;
+    /* Cleaned up animation for performance */
 }
 
 .policies-title::after {
@@ -1522,17 +1497,18 @@ body {
 
 /* Policy Sections */
 .policy-section {
-    background: var(--color-secondary); 
+    background: var(--color-secondary); /* Use the Light Blue/Off-White variable */
     border-radius: 16px;
     padding: 2.5rem;
     margin-bottom: 3rem;
     box-shadow: 0 5px 20px rgba(28, 46, 70, 0.1);
     transition: transform 0.3s ease;
+    /* Use 'will-change' to hint at hardware acceleration */
     will-change: transform, box-shadow; 
 }
 
 .policy-section:hover {
-    transform: translateY(-3px); 
+    transform: translateY(-3px); /* Lighter transform */
     box-shadow: 0 8px 25px rgba(28, 46, 70, 0.15);
 }
 
@@ -1547,8 +1523,8 @@ body {
 .section-icon {
     font-size: 2rem;
     margin-right: 1rem;
-    color: var(--color-accent); 
-    animation: pulse 2s infinite; 
+    color: var(--color-accent); /* Use your existing accent color */
+    animation: pulse 2s infinite; /* Keep pulse, it's light */
 }
 
 .section-title {
@@ -1565,13 +1541,13 @@ body {
 }
 
 .policy-content {
-    padding-left: 0; 
+    padding-left: 0; /* Remove padding for better mobile flow */
 }
 
 .policy-point {
     margin-bottom: 1.5rem;
     position: relative;
-    padding-left: 1.5rem; 
+    padding-left: 1.5rem; /* Reduced padding */
 }
 
 .policy-point::before {
@@ -1631,4 +1607,4 @@ body {
         margin-bottom: 0.5rem;
         margin-right: 0;
     }
-}
+    }
