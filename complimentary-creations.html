@@ -92,12 +92,17 @@
             border-radius: 4px;
         }
         
-        /* Products Grid */
+        /* Products Grid - FIX APPLIED HERE */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
+            /* New lines to center the grid when it doesn't fill the full width */
+            **justify-content: center;**
+            **max-width: fit-content;**
+            **margin-left: auto;**
+            **margin-right: auto;**
         }
         
         .product-card {
@@ -171,7 +176,9 @@
             }
             
             .products-grid {
+                /* On small screens, we want it to be 1 column and fill the width, so we can remove the centering properties */
                 grid-template-columns: 1fr;
+                max-width: 100%;
             }
         }
 
