@@ -105,53 +105,47 @@ body {
     text-align: center;
 }
 
-/* --- UPDATED: Reduced Text Size + Subtle Glitch (Shaking) + Sci-Fi Hover --- */
+/* --- UPDATED: Glitch Removed, Text Shadow Fixed, Clipping Fixed --- */
 .overlay-menu a, .overlay-menu .submenu-toggle {
-    color: var(--color-text-light); /* Ensure text is visible (white) */
+    color: var(--color-text-light);
     text-decoration: none;
-    font-size: 1.8rem; /* INCREASED SIZE for visibility, still reduced from original */
+    font-size: 1.8rem; /* Target size and alignment confirmed */
     font-weight: 600; 
-    padding: 12px 0;
+    padding: 15px 0; /* INCREASED PADDING to prevent clipping */
     display: block;
     transition: color 0.3s, text-shadow 0.3s, background-color 0.3s;
     position: relative;
-    /* Glitch Effect Setup (Subtle Shake) */
-    text-shadow: 1px 0 var(--color-accent); /* Initial light blue shadow for definition */
-    animation: subtle-shake 1.5s infinite alternate; 
-}
-
-/* Subtle Shaking/Glitch Animation */
-@keyframes subtle-shake {
-    0% { transform: translate(1px, 1px); text-shadow: 1px 0 var(--color-accent); }
-    25% { transform: translate(-1px, 0px); text-shadow: 0 1px var(--color-accent); }
-    50% { transform: translate(1px, -1px); text-shadow: -1px 0 var(--color-accent); }
-    75% { transform: translate(-1px, 1px); text-shadow: 0 -1px var(--color-accent); }
-    100% { transform: translate(1px, 1px); text-shadow: 1px 0 var(--color-accent); }
+    
+    /* SCI-FI GLOW (PERMANENT) for high visibility and style */
+    text-shadow: 0 0 5px var(--color-accent); 
+    
+    /* Glitch Animation REMOVED to fix visibility and clipping */
+    animation: none; 
 }
 
 /* Sci-Fi Hover Effect (Light Blue Glow) */
 .overlay-menu a:hover, .overlay-menu .submenu-toggle:hover {
-    color: var(--color-accent); /* Highlight on hover */
-    text-shadow: 0 0 15px var(--color-accent), 0 0 25px var(--color-text-light); /* STRONGER SCI-FI GLOW */
-    background-color: rgba(173, 216, 230, 0.15); /* Subtle background highlight on hover */
-    text-decoration: none; /* Override underline */
-    animation: none; /* Pause shaking on hover for focus */
+    color: var(--color-accent);
+    text-shadow: 0 0 15px var(--color-accent), 0 0 25px var(--color-text-light); /* STRONGER SCI-FI GLOW on hover */
+    background-color: rgba(173, 216, 230, 0.15);
+    text-decoration: none;
 }
 
-/* Submenu Links: Keep smaller and remove glitch */
+/* Submenu Links: Keep smaller and remove extra glow */
 .overlay-menu .submenu a {
-    font-size: 1.4rem; /* Smaller size for sub-links */
+    font-size: 1.4rem;
     font-weight: 400; 
-    padding: 8px 0;
+    padding: 10px 0; /* Increased padding */
     opacity: 0.9;
-    animation: none; /* No glitch on sub-links */
-    text-shadow: none; /* No glitch shadow on sub-links */
+    animation: none;
+    text-shadow: none; /* No base glow on sub-links */
 }
 
 .overlay-menu .submenu a:hover {
-    color: var(--color-text-light);
-    text-shadow: 0 0 5px var(--color-accent); /* Smaller glow for sub-links */
+    opacity: 1;
+    text-shadow: 0 0 5px var(--color-accent); /* Small glow on hover */
     background-color: rgba(173, 216, 230, 0.05);
+    text-decoration: none;
 }
 /* END UPDATED NAVIGATION STYLING */
 
@@ -259,14 +253,15 @@ body {
 .overlay-menu .submenu-toggle {
     color: var(--color-text-light);
     text-decoration: none;
-    font-size: 1.8rem; /* Corrected size */
+    font-size: 1.8rem;
     font-weight: 600;
-    padding: 12px 0;
+    padding: 15px 0; /* Clipping fix */
     display: block; 
     text-align: center;
     cursor: pointer; 
     transition: color 0.3s;
-    /* Glitch Animation is applied above */
+    text-shadow: 0 0 5px var(--color-accent);
+    animation: none; 
 }
 
 /* Ensure the non-clickable SPAN doesn't get text decoration on hover, only color change */
@@ -275,7 +270,6 @@ body {
     text-shadow: 0 0 15px var(--color-accent), 0 0 25px var(--color-text-light);
     background-color: rgba(173, 216, 230, 0.15);
     text-decoration: none;
-    animation: none; 
 }
 
 
@@ -301,13 +295,14 @@ body {
 }
 
 .overlay-menu .submenu a {
-    font-size: 1.4rem; /* Submenu text size */
+    font-size: 1.4rem;
     font-weight: 400; 
-    padding: 8px 0;
+    padding: 10px 0; /* Clipping fix */
     opacity: 0.9;
     text-decoration: none;
     display: block; 
-    animation: none; /* No glitch on sub-links */
+    animation: none;
+    text-shadow: none; 
 }
 
 .overlay-menu .submenu a:hover {
@@ -333,7 +328,7 @@ body {
 /* Mobile Adjustment: Ensure sub-links look good on tiny screens */
 @media (max-width: 480px) {
     .overlay-menu a, .overlay-menu .submenu-toggle {
-        font-size: 1.5rem; /* Better text on tiny screens */
+        font-size: 1.5rem;
         padding: 10px 0;
     }
     .overlay-menu .submenu a {
