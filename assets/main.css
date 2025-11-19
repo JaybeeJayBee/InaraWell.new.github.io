@@ -1945,3 +1945,73 @@ a.text-link:hover {
         width: 220px;
     }
 }
+/* --- NEW STYLES FOR INTERACTIVE CAROUSEL NAVIGATION --- */
+
+.carousel-nav {
+    position: relative;
+    /* Use flex to align the arrows and the scroll container */
+    display: flex; 
+    align-items: center;
+    /* FIX: Set the same side padding as the scroll container used to have */
+    padding: 0 40px; 
+}
+
+/* Override padding for the scroll container to remove side space */
+.carousel-nav .horizontal-scroll-container {
+    padding: 10px 0; 
+    flex-grow: 1;
+}
+
+.nav-button {
+    /* Base Button Styling */
+    position: absolute; 
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    
+    background-color: var(--color-primary-dark);
+    color: var(--color-secondary-light);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s, transform 0.2s;
+    line-height: 1;
+    opacity: 0.9;
+    /* Ensures the button text (<< or >>) is centered */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-button:hover {
+    background-color: var(--color-secondary-light);
+    color: var(--color-primary-dark);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.left-arrow {
+    left: 5px; 
+}
+
+.right-arrow {
+    right: 5px; 
+}
+
+/* Hide navigation buttons on mobile devices */
+@media (max-width: 768px) {
+    .nav-button {
+        display: none;
+    }
+    /* Restore the original padding pattern for mobile, now that arrows are hidden */
+    .carousel-nav {
+        padding: 0 20px;
+    }
+    .carousel-nav .horizontal-scroll-container {
+        padding: 10px 0;
+    }
+}
