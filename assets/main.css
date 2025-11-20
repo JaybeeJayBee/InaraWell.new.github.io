@@ -8,12 +8,12 @@
     --color-text-dark: #1C2E46;
 }
 
-/* --- CRITICAL GLOBAL RESET --- */
+/* --- CRITICAL GLOBAL RESET (FINAL FIX) --- */
 html, body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    overflow-x: hidden;
+    width: 100vw; /* CRITICAL FIX: Use Viewport Width to guarantee no overflow */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 * {
@@ -1185,17 +1185,17 @@ body {
 }
 
 .faq-answer li {
+    margin-bottom: 0.6rem;
+    padding-left: 1.5rem;
     position: relative;
-    padding-left: 25px;
-    margin-bottom: 10px;
     font-size: 0.95rem;
-    color: var(--color-text-dark);
 }
 
-.faq-answer li .checkmark {
+.faq-answer li::before {
+    content: '•';
     position: absolute;
     left: 0;
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-weight: bold;
 }
 
