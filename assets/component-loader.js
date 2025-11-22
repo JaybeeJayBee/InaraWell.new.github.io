@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadComponent('nav-overlay-container', 'components/nav.html').then(() => {
         // Run Navigation setup after the nav.html content has been injected
         setupNavigation();
-        setupSubmenuLogic(); // UPDATED: Now handles all submenu logic
+        setupSubmenuLogic();
+        highlightCurrentPage(); // NEW: Active Page Glow
     });
     loadComponent('footer-container', 'components/footer.html').then(() => {
         // Run Footer script after injection
@@ -24,11 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Navigation and Floating Icon Logic ---
     function setupNavigation() {
-        const trigger = document.getElementById('nav-trigger');
+        // UPDATED ID to match blueprint
+        const trigger = document.getElementById('floating-nav-icon'); 
         const closeBtn = document.getElementById('nav-close');
         const overlay = document.getElementById('nav-overlay');
 
-        if (!trigger || !overlay || !closeBtn) return; // Exit if components not found
+        if (!trigger || !overlay || !closeBtn) return;
 
         // Open Menu Function
         trigger.addEventListener('click', () => {
@@ -78,6 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }, false);
     }
     
+    // --- NEW: Active Page Glow Logic (Highlight Current Page) ---
+    function highlightCurrentPage() {
+        const currentPath = window.location.pathname.replace(/\/$/, ''); // Get clean path (/faq)
+        
+        document.querySelectorAll('.overlay-menu a').forEach(link => {
+            const linkPath = link.getAttribute('href').replace(/\/$/, '');
+            
+            // Handle index.html (root) separately
+            if (linkPath === '/' && (currentPath === '' || currentPath === '/index.html' || currentPath === '/index')) {
+                 link.classList.add('active-page');
+            }
+            // Match based on clean URL path
+            else if (currentPath.includes(linkPath) && linkPath !== '/') {
+                link.classList.add('active-page');
+            }
+        });
+    }
+    
     // --- UPDATED: Submenu Dropdown Logic for Multiple Menus ---
     function setupSubmenuLogic() {
         // Select all elements that can trigger a dropdown (both <a> and <span> with class .submenu-toggle)
@@ -92,10 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // This single click handler now manages both the 'click-to-toggle' (span) and 'click-to-navigate' (a)
             toggle.addEventListener('click', (e) => {
                 
-                // If it's an <a> tag and the submenu is NOT currently open, allow navigation on the second click
-                // But, we want the first click to open it, so we prevent default on the first open
-                
-                // If we are dealing with a non-link span OR the submenu is closed, or it's an arrow click, we TOGGLE
+                // If it's a non-link span OR the submenu is closed, or it's an arrow click, we TOGGLE
                 if (toggle.tagName === 'SPAN' || submenu.classList.contains('hidden') || e.target.classList.contains('submenu-arrow') || e.target.closest('.submenu-arrow')) {
                     
                     e.preventDefault(); 
@@ -108,11 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         arrow.classList.toggle('rotate');
                     }
 
-                    // Close other open submenus
+                    // Close other open submenus (ONE AT A TIME requirement)
                     document.querySelectorAll('.has-submenu').forEach(otherLi => {
                         if (otherLi !== parentLi) {
                             const otherSubmenu = otherLi.querySelector('.submenu');
-                            if (!otherSubmenu.classList.contains('hidden')) {
+                            if (otherSubmenu && !otherSubmenu.classList.contains('hidden')) {
                                 otherSubmenu.classList.add('hidden');
                                 const otherArrow = otherLi.querySelector('.submenu-arrow');
                                 if (otherArrow) {
