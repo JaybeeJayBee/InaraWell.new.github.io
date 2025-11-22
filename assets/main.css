@@ -124,6 +124,19 @@ body {
     opacity: 0;
 }
 
+/* --- Chevron Rotation Logic --- */
+.submenu-arrow {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease-in-out;
+    color: var(--color-text-light);
+}
+
+.submenu-arrow.rotate {
+    transform: rotate(180deg); /* Flips the arrow upwards when the submenu is open */
+}
+
 
 /* --- NEW: Brand Header Styling --- */
 .nav-brand-header {
