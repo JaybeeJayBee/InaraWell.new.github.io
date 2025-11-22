@@ -1,4 +1,4 @@
-<button id="nav-trigger" aria-label="Open Navigation Menu">
+<button id="floating-nav-icon" aria-label="Open Navigation Menu">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
@@ -19,49 +19,58 @@
         <div class="bubble"></div>
     </div>
     
-    <button id="nav-close" aria-label="Close Navigation Menu">
+    <button id="nav-close" class="close-btn" aria-label="Close Navigation Menu">
         &times; </button>
+    
+    <div class="nav-brand-header">
+        <h1>InaraWell</h1>
+    </div>
     
     <nav class="overlay-menu">
         <ul>
             <li><a href="/">Home</a></li>
+            <hr class="menu-divider">
             
             <li class="has-submenu">
                 <a href="/our-creations-showcase" class="submenu-toggle">
-                    Our Creations Showcase <i class="fas fa-chevron-down submenu-arrow"></i>
+                    Creations Showcase <i class="fas fa-chevron-down submenu-arrow"></i>
                 </a>
                 <ul class="submenu hidden">
-                    <li><a href="/complimentary-creations">Complimentary Creations</a></li>
-                    <li><a href="/premium-creations">Premium Creations</a></li>
+                    <li><span class="submenu-item-text">View all stores</span></li>
                 </ul>
             </li>
+            <hr class="menu-divider">
             
             <li class="has-submenu" id="rewards-toggle">
                 <span class="submenu-toggle">
-                    Rewardable Programs And Offers 
-                    </span>
+                    R-Programs and Offers <i class="fas fa-chevron-down submenu-arrow"></i>
+                </span>
                 <ul class="submenu hidden" id="rewards-submenu">
-                    <li><span>Offers Adding Up Soon</span></li> 
+                    <li><span class="submenu-item-text">Offers Adding Up Soon</span></li> 
                 </ul>
             </li>
+            <hr class="menu-divider">
 
             <li><a href="/faq">FAQ</a></li> 
-            <li><a href="/affiliate">Affiliate Program</a></li>
+            <hr class="menu-divider">
+            
+            <li><a href="/affiliate">Affiliates</a></li>
+            <hr class="menu-divider">
+            
             <li><a href="/policies">Policies</a></li>
+            <hr class="menu-divider">
             
             <li class="has-submenu">
-                <a href="/our-reviews-and-testimonials" class="submenu-toggle">
-                    Our Reviews And Testimonials <i class="fas fa-chevron-down submenu-arrow"></i>
-                </a>
+                <span class="submenu-toggle">
+                    Reviews <i class="fas fa-chevron-down submenu-arrow"></i>
+                </span>
                 <ul class="submenu hidden">
-                    <li><span>Reviews Adding Up Soon</span></li>
+                    <li><span class="submenu-item-text">Reviews Adding Up Soon</span></li>
                 </ul>
             </li>
+            <hr class="menu-divider">
 
             <li><a href="/contact">Contact Us</a></li>
         </ul>
     </nav>
-    <div class="overlay-info">
-        <h3>InaraWell</h3>
-    </div>
 </div>
