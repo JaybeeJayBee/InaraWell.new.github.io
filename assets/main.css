@@ -1642,23 +1642,34 @@ a.text-link:hover {
 .store-hero {
     text-align: center;
     padding: 60px 20px;
-    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent)); /* Subtle gradient */
+    /* --- UPDATED: Background Image and Dark Overlay for Contrast --- */
+    background: linear-gradient(rgba(28, 46, 70, 0.7), rgba(28, 46, 70, 0.7)), 
+                url('https://res.cloudinary.com/dqpvrgi9f/image/upload/v1763860358/Picsart_25-11-23_02-05-35-683_lxcrbq.jpg') no-repeat center center;
+    background-size: cover;
+    background-position: top center;
+    /* End of New Background Styling */
     border-radius: 8px;
     margin-bottom: 50px;
     animation: zoomInOut 6s ease-in-out infinite; /* Apply the smooth animation */
     transition: all 0.5s ease;
+    
+    /* Set base text color to light to contrast the dark overlay */
+    color: var(--color-text-light); 
 }
 
 .store-hero .hero-title {
     font-size: 2.8rem;
-    color: var(--color-primary);
+    /* FIX: Use light color against dark background */
+    color: var(--color-text-light);
     margin-bottom: 10px;
     font-weight: 800;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Added shadow for better edge definition */
 }
 
 .store-hero .hero-tagline {
     font-size: 1.3rem;
-    color: var(--color-primary);
+    /* FIX: Use light color against dark background */
+    color: var(--color-text-light);
     max-width: 800px;
     margin: 0 auto;
 }
